@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
 public class HN_KS24_CNTT5_HoangTrungDung {
     public static void main(String[] args) {
-        String id = new String();
+        String[] id = new String[100];
         Scanner scanner = new Scanner(System.in);
         int current = 0;
         do {
@@ -24,25 +24,34 @@ public class HN_KS24_CNTT5_HoangTrungDung {
                 }else {
                     for (int i = 0; i < current; i++) {
                         System.out.println("--------------------------");
-                        System.out.println("MSSV: " + id);
+                        System.out.println("MSSV: " + id[i]);
                         System.out.println("--------------------------");
                     }
                 }
                     break;
                 case 2:
+                    String Id;
                     do {
-                        System.out.println("Nhập MSSV: ");
-                        id = scanner.nextLine();
-                    }while(Pattern.matches("^B\\d{7}$", id));
+                        System.out.print("Nhập MSSV: ");
+                        Id = scanner.nextLine();
 
-                    StringBuilder info = new StringBuilder();
-                    info.append(id);
-                    System.out.println(info);
+                        if (!Pattern.matches("^B\\d{7}$", Id)) {
+                            System.err.println("-- Nhập sai định dạng --");
+                        }
+                    } while (!Pattern.matches("^B\\d{7}$", Id));
+
+                    id[current++] = Id;
+                    System.out.println("-- Thêm thành công --");
                     break;
                 case 3: break;
                 case 4: break;
                 case 5: break;
-                case 6: break;
+                case 6:
+                    System.out.println("-- Thoát chương trình thành công --");
+                    break;
+                default:
+                    System.err.println("-- Lựa chọn không hợp lệ --");
+                    break;
             }
         }while(true);
     }
